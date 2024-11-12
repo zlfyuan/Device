@@ -17,7 +17,7 @@ Device is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "Device", '~> 3.5.0'
+pod "Device", '~> 3.7.0'
 ```
 
 ## Carthage
@@ -34,7 +34,7 @@ $ brew install carthage
 To integrate Device into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Ekhoo/Device" ~> 3.5.0
+github "Ekhoo/Device" ~> 3.7.0
 ```
 
 Run `carthage update` to build the framework and drag the built `Device.framework` into your Xcode project.
@@ -47,7 +47,7 @@ Once you have your Swift package set up, adding Device as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Ekhoo/Device.git", from: "3.5.0")
+    .package(url: "https://github.com/Ekhoo/Device.git", from: "3.7.0")
 ]
 ```
 
@@ -240,6 +240,9 @@ func myFunc() {
 - https://www.youtube.com/watch?v=cTZcOaGgD-E
 
 [![YouTube](https://user-images.githubusercontent.com/2488011/53433240-ba33a780-39fc-11e9-820b-9e1017adce18.png)](https://www.youtube.com/watch?v=cTZcOaGgD-E)
+
+## Privacy
+Device does not collect any data. We provide this notice to help you fill out [App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/). Since Device is not using any of privacy required reason API as listed by Apple [here](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api) xcprivacy manifest is not needed for this SDK.
 
 # Author
 Lucas Ortis:

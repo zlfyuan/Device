@@ -55,6 +55,7 @@ open class Device {
             case "iPhone14,5":                               return .iPhone13
             case "iPhone14,2":                               return .iPhone13Pro
             case "iPhone14,3":                               return .iPhone13Pro_Max
+            case "iPhone14,6":                               return .iPhoneSE3
             case "iPhone14,7":                               return .iPhone14
             case "iPhone14,8":                               return .iPhone14Plus
             case "iPhone15,2":                               return .iPhone14Pro
@@ -63,6 +64,10 @@ open class Device {
             case "iPhone15,5":                               return .iPhone15Plus
             case "iPhone16,1":                               return .iPhone15Pro
             case "iPhone16,2":                               return .iPhone15Pro_Max
+            case "iPhone17,3":                               return .iPhone16
+            case "iPhone17,4":                               return .iPhone16Plus
+            case "iPhone17,1":                               return .iPhone16Pro
+            case "iPhone17,2":                               return .iPhone16Pro_Max
 
             /*** iPad ***/
             case "iPad1,1", "iPad1,2":                       return .iPad1
@@ -86,6 +91,8 @@ open class Device {
             case "iPad5,1", "iPad5,2":                       return .iPadMini4
             case "iPad11,1", "iPad11,2":                     return .iPadMini5
             case "iPad14,1", "iPad14,2":                     return .iPadMini6
+            case "iPad14,8", "iPad14,9":                     return .iPadAirM2_11Inch
+            case "iPad14,10", "iPad14,11":                   return .iPadAirM2_13Inch
 
             /*** iPadPro ***/
             case "iPad6,3", "iPad6,4":                       return .iPadPro9_7Inch
@@ -100,6 +107,8 @@ open class Device {
             case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": return .iPadPro12_9Inch5
             case "iPad14,3", "iPad14,4":                     return .iPadPro11_0Inch4
             case "iPad14,5", "iPad14,6":                     return .iPadPro12_9Inch6
+            case "iPad16,3", "iPad16,4":                     return .iPadProM4_11Inch
+            case "iPad16,5", "iPad16,6":                     return .iPadProM4_13Inch
 
             /*** iPod ***/
             case "iPod1,1":                                  return .iPodTouch1Gen
@@ -111,9 +120,11 @@ open class Device {
             case "iPod9,1":                                  return .iPodTouch7Gen
 
             /*** Simulator ***/
-            case "i386", "x86_64":                           return .simulator
+            case "i386", "x86_64", "arm64":                  return .simulator
 
-            default:                                         return .unknown
+            default:
+                assertionFailure("New Device Found! Model Code:\(code). Please create a PR to the repo.")
+                return .unknown
         }
     }
 
@@ -126,7 +137,7 @@ open class Device {
             return .iPad
         } else if versionCode.contains("iPod") {
             return .iPod
-        } else if versionCode == "i386" || versionCode == "x86_64" {
+        } else if versionCode == "i386" || versionCode == "x86_64" || versionCode == "arm64" {
             return .simulator
         } else {
             return .unknown
@@ -162,6 +173,8 @@ open class Device {
                 return .screen6_1Inch
             case 852:
                 return .screen6_1Inch_2
+            case 874:
+                return .screen6_3Inch
             case 896:
                 switch version() {
                 case .iPhoneXS_Max, .iPhone11Pro_Max:
@@ -173,6 +186,8 @@ open class Device {
                 return .screen6_7Inch
             case 932:
                 return .screen6_7Inch_2
+            case 956:
+                return .screen6_9Inch
             case 1024:
                 switch version() {
                 case .iPadMini, .iPadMini2, .iPadMini3, .iPadMini4, .iPadMini5:
@@ -188,10 +203,12 @@ open class Device {
                 return .screen10_5Inch
             case 1180:
                 return .screen10_9Inch
-            case 1194:
+            case 1194, 1210:
                 return .screen11Inch
             case 1366:
                 return .screen12_9Inch
+            case 1376:
+                return .screen13Inch
             default:
                 return .unknownSize
         }
@@ -247,161 +264,13 @@ extension Device {
                 .iPhone15,
                 .iPhone15Plus,
                 .iPhone15Pro,
-                .iPhone15Pro_Max:
+                .iPhone15Pro_Max,
+                .iPhone16,
+                .iPhone16Plus,
+                .iPhone16Pro,
+                .iPhone16Pro_Max:
             return true
-        case .iPhone2G:
-            return false
-        case .iPhone3G:
-            return false
-        case .iPhone3GS:
-            return false
-        case .iPhone4:
-            return false
-        case .iPhone4S:
-            return false
-        case .iPhone5:
-            return false
-        case .iPhone5C:
-            return false
-        case .iPhone5S:
-            return false
-        case .iPhone6:
-            return false
-        case .iPhone6Plus:
-            return false
-        case .iPhone6S:
-            return false
-        case .iPhone6SPlus:
-            return false
-        case .iPhoneSE:
-            return false
-        case .iPhone7:
-            return false
-        case .iPhone7Plus:
-            return false
-        case .iPhone8:
-            return false
-        case .iPhone8Plus:
-            return false
-        case .iPhoneX:
-            return false
-        case .iPhoneXS:
-            return false
-        case .iPhoneXS_Max:
-            return false
-        case .iPhoneXR:
-            return false
-        case .iPhone11:
-            return false
-        case .iPhone11Pro:
-            return false
-        case .iPhone11Pro_Max:
-            return false
-        case .iPhoneSE2:
-            return false
-        case .iPhone12Mini:
-            return false
-        case .iPhone12:
-            return false
-        case .iPhone12Pro:
-            return false
-        case .iPhone12Pro_Max:
-            return false
-        case .iPhone13Mini:
-            return false
-        case .iPhone13:
-            return false
-        case .iPhone13Pro:
-            return false
-        case .iPhone13Pro_Max:
-            return false
-        case .iPhone14:
-            return false
-        case .iPhone14Plus:
-            return false
-        case .iPad1:
-            return false
-        case .iPad2:
-            return false
-        case .iPad3:
-            return false
-        case .iPad4:
-            return false
-        case .iPad5:
-            return false
-        case .iPad6:
-            return false
-        case .iPad7:
-            return false
-        case .iPad8:
-            return false
-        case .iPad9:
-            return false
-        case .iPadAir:
-            return false
-        case .iPadAir2:
-            return false
-        case .iPadAir3:
-            return false
-        case .iPadAir4:
-            return false
-        case .iPadMini:
-            return false
-        case .iPadMini2:
-            return false
-        case .iPadMini3:
-            return false
-        case .iPadMini4:
-            return false
-        case .iPadMini5:
-            return false
-        case .iPadMini6:
-            return false
-        case .iPadPro9_7Inch:
-            return false
-        case .iPadPro12_9Inch:
-            return false
-        case .iPadPro10_5Inch:
-            return false
-        case .iPadPro12_9Inch2:
-            return false
-        case .iPadPro11_0Inch:
-            return false
-        case .iPadPro12_9Inch3:
-            return false
-        case .iPadPro11_0Inch2:
-            return false
-        case .iPadPro11_0Inch3:
-            return false
-        case .iPadPro12_9Inch4:
-            return false
-        case .iPadPro12_9Inch5:
-            return false
-        case .iPodTouch1Gen:
-            return false
-        case .iPodTouch2Gen:
-            return false
-        case .iPodTouch3Gen:
-            return false
-        case .iPodTouch4Gen:
-            return false
-        case .iPodTouch5Gen:
-            return false
-        case .iPodTouch6Gen:
-            return false
-        case .iPodTouch7Gen:
-            return false
-        case .simulator:
-            return false
-        case .iPad10:
-            return false
-        case .iPadAir5:
-            return false
-        case .iPadPro11_0Inch4:
-            return false
-        case .iPadPro12_9Inch6:
-            return false
-        case .unknown:
+        default:
             return false
         }
     }
